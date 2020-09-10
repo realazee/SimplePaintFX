@@ -45,6 +45,8 @@ public class PlainPane extends BorderPane {
 
 		// TODO #1: create a pane to be the drawing surface of class SimplePaintPane
 		// and place it in the Center of PlainPane
+		drawingSurfacePane = new SimplePaintPane();
+		this.setCenter(drawingSurfacePane);
 		
 	     // don't touch this stuff... 	
 
@@ -52,9 +54,13 @@ public class PlainPane extends BorderPane {
 		// All event-handling will be implemented in the Handler
 		// TODO #2: You must provide your drawing pane to  SimplePaintHandler 
 		handler = new SimplePaintHandler(drawingSurfacePane);
-
+		
 		// TODO #3: register the necessary handlers for events in drawingSurfacePane - refer to SimplePaint
 		
+		drawingSurfacePane.setOnMousePressed(e -> handler.mousePressed(e));
+		drawingSurfacePane.setOnMouseReleased(e -> handler.mouseReleased(e));
+		drawingSurfacePane.setOnMouseDragged(e -> handler.mouseDragged(e));
+		drawingSurfacePane.setOnKeyPressed(e -> handler.keyPressed(e));
 		
 		
 		// Creating a Vertical Box to hold the buttons, setting the outside margins and alignment
@@ -67,6 +73,23 @@ public class PlainPane extends BorderPane {
 		// TODO #4 :Create the rest of the buttons (white and colorpicker are already done)
 		//          and register the handler of each button (except colorpicker) 
 		MyButton white = new MyButton("White");
+		MyButton red = new MyButton("Red");
+		MyButton blue = new MyButton("Blue");
+		MyButton green = new MyButton("Green");
+		MyButton cyan = new MyButton("Cyan");
+		MyButton magenta = new MyButton("Magenta");
+		MyButton yellow = new MyButton("Yellow");
+		MyButton clear = new MyButton("Clear");
+		
+		white.setOnAction(e -> handler.setColor(Color.WHITE));
+		red.setOnAction(e -> handler.setColor(Color.RED));
+		blue.setOnAction(e -> handler.setColor(Color.BLUE));
+		green.setOnAction(e -> handler.setColor(Color.GREEN));
+		cyan.setOnAction(e -> handler.setColor(Color.CYAN));
+		magenta.setOnAction(e -> handler.setColor(Color.MAGENTA));
+		yellow.setOnAction(e -> handler.setColor(Color.YELLOW));
+		clear.setOnAction(e -> handler.clearDrawingPane());
+		
 		
 	
 		// accessing the color picker in JavaFX is a pain - so don't touch this stuff
@@ -81,7 +104,8 @@ public class PlainPane extends BorderPane {
 		
 		
 		// TODO #5: Add all the buttons to the button box and place it in the right section of this pane
-		
+		btnBox.getChildren().addAll(white, red, blue, green, cyan, magenta, yellow, custom, colorPicker, clear);
+		this.setRight(btnBox);
 		
 		
 
@@ -95,8 +119,9 @@ public class PlainPane extends BorderPane {
 	    editMenu.getItems().add(undo);
 
 	    // TODO #6: Register the handlers for the quit and undo menu actions - using lambdas
-		quit.setOnAction();
-	    undo.setOnAction();
+	    
+		quit.setOnAction(e -> handler.quit());
+	    undo.setOnAction(e -> handler.undo());
 	    
 	    menuBar = new MenuBar(simplePaint,editMenu);  // add the two menu options...
 	    this.setTop(menuBar);

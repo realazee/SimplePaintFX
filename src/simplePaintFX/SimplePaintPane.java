@@ -44,6 +44,11 @@ public class SimplePaintPane extends Pane {
 	 */
 	public void addLine(double prevX, double prevY, double currX, double currY) {
 		// TODO #1:   Create a new line, set its color and add it to the drawing pane
+		//this.getChildren().add(new Line(prevX, prevY, currX, currY));
+		Line line = new Line(prevX, prevY, currX, currY);
+		line.setStroke(currentColor);
+		this.getChildren().add(line);
+		//System.out.println("line added");
 	}
 	
 	/**
@@ -57,6 +62,10 @@ public class SimplePaintPane extends Pane {
 		// Great questions - javadocs ObservableList has the answers...
 		// One final thought - what are the boundary conditions that you need to consider?
 		
+		if(this.getChildren().size() > 0) {
+			this.getChildren().remove(this.getChildren().size()-1);
+		
+		}
 		
 		
 		// cause the repaint
@@ -142,7 +151,7 @@ public class SimplePaintPane extends Pane {
 	public void clearPane() {
 		// TODO #3:    Clear all children from the drawing pane...
 		
-
+		this.getChildren().clear();
 		this.requestLayout();
 	}
 	

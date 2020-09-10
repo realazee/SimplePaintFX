@@ -35,6 +35,7 @@ public class SimplePaintHandler {
 	 */
 	public void setColor(Color color) {	
 		// TODO #1: complete this handler using methods in the drawing pane
+		drawPane.setCurrentColor(color);
 	}
 
 	/**
@@ -42,6 +43,7 @@ public class SimplePaintHandler {
 	 */
 	public void clearDrawingPane() {	
 		// TODO #2: complete this handler using methods in the drawing pane
+		drawPane.clearPane();
 	}
 	
 	/**
@@ -57,6 +59,8 @@ public class SimplePaintHandler {
 	public void undo () {
 		// TODO #3: complete this handler using methods in the drawing pane
 		//          you will likely need to make sure that the focus is in the drawing pane first...
+		drawPane.requestFocus();
+		drawPane.removeOneLine();
 	}
 	
 	
