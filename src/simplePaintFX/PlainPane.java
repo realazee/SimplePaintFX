@@ -92,7 +92,7 @@ public class PlainPane extends BorderPane {
 		
 		
 	
-		// accessing the color picker in JavaFX is a pain - so don't touch this stuff
+		// accessing the color picker in JavaFX is a pain ;-;
 		Text custom = new Text("\nCustom Color");
 		custom.setFont(Font.font("Calibri",FontWeight.BOLD,14));
 		custom.setFill(Color.RED);
